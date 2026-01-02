@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saturn – Ссылки</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 20% 50%, rgba(80, 60, 120, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(60, 80, 120, 0.1) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-30px, -30px); }
+        }
+
+        .container {
+            max-width: 680px;
+            width: 100%;
+            padding: 60px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .header h1 {
+            font-size: 56px;
+            font-weight: 200;
+            letter-spacing: 12px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #b0b0b0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
+        }
+
+        .header p {
+            font-size: 14px;
+            color: #666;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-size: 12px;
+            color: #555;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin: 40px 0 20px 0;
+            padding-left: 5px;
+        }
+
+        .section-title:first-of-type {
+            margin-top: 0;
+        }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .link-button {
+            display: flex;
+            align-items: center;
+            padding: 24px 32px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            text-decoration: none;
+            color: #ffffff;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(20px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .link-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .link-button:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 80px rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .link-button:hover::before {
+            opacity: 1;
+        }
+
+        .link-button.personal {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .link-button.personal:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .link-icon {
+            width: 32px;
+            height: 32px;
+            margin-right: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            position: relative;
+            z-index: 1;
+            filter: drop-shadow(0 0 8px currentColor);
+        }
+
+        .link-content {
+            flex: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .link-title {
+            font-size: 18px;
+            font-weight: 400;
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+        }
+
+        .link-description {
+            font-size: 13px;
+            color: #888;
+            font-weight: 300;
+            line-height: 1.5;
+        }
+
+        .youtube { color: #FF0000; }
+        .spotify { color: #1DB954; }
+        .telegram { color: #0088cc; }
+        .instagram { 
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 8px rgba(220, 39, 67, 0.6));
+        }
+        .chess { color: #81b64c; }
+
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 42px;
+                letter-spacing: 8px;
+            }
+
+            .header p {
+                font-size: 12px;
+            }
+
+            .link-button {
+                padding: 20px 26px;
+            }
+
+            .link-title {
+                font-size: 16px;
+            }
+
+            .link-description {
+                font-size: 12px;
+            }
+
+            .link-icon {
+                width: 28px;
+                height: 28px;
+                font-size: 20px;
+                margin-right: 20px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .header h1 {
+                font-size: 32px;
+                letter-spacing: 6px;
+            }
+
+            .container {
+                padding: 40px 15px;
+            }
+
+            .section-title {
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>МОЁ ПОРТФОЛИО</h1>
+            <p>Музыкант, Эдитор (Новичок в шахмате)</p>
+        </div>
+
+        <div class="section-title">Проекты</div>
+        <div class="links">
+            <a href="https://www.youtube.com/@satuurnmusic" class="link-button" target="_blank" rel="noopener">
+                <div class="link-icon youtube">
+                    <i class="fab fa-youtube"></i>
+                </div>
+                <div class="link-content">
+                    <div class="link-title">YouTube</div>
+                    <div class="link-description">Основной канал</div>
+                </div>
+            </a>
+
+            <a href="https://www.youtube.com/@saturn.mp5" class="link-button" target="_blank" rel="noopener">
+                <div class="link-icon youtube">
+                    <i class="fab fa-youtube"></i>
+                </div>
+                <div class="link-content">
+                    <div class="link-title">YouTube</div>
+                    <div class="link-description">Дополнительный канал</div>
+                </div>
+            </a>
+
+            <a href="https://open.spotify.com/artist/3NZBrdOaiUIsxvY76GpBod?si=uh8i1iqzS9-JXP_BMP94Qg" class="link-button" target="_blank" rel="noopener">
+                <div class="link-icon spotify">
+                    <i class="fab fa-spotify"></i>
+                </div>
+                <div class="link-content">
+                    <div class="link-title">Spotify</div>
+                    <div class="link-description">Моя музыка</div>
+                </div>
+            </a>
+
+            <a href="https://t.me/soundcrate" class="link-button" target="_blank" rel="noopener">
+                <div class="link-icon telegram">
+                    <i class="fab fa-telegram"></i>
+                </div>
+                <div class="link-content">
+                    <div class="link-title">Telegram</div>
+                    <div class="link-description">Канал с паками и инструментами</div>
+                </div>
+            </a>
+        </div>
+
+        <div class="section-title">Личные профили</div>
+        <div class="links">
+            <a href="https://t.me/cm0ke777" class="link-button personal" target="_blank" rel="noopener">
+                <div class="link-icon telegram">
+                    <i class="fab fa-telegram"></i>
+                </div>
+                <div class="link-content">
+                    <div class="link-title">Telegram</div>
+                    <div class="link-description">Мой личный профиль</div>
+                </div>
+            </a>
+
+            <a href="https://instagram.com/r.otkirov" class="link-button personal" target="_blank" rel="noopener">
+                <div class="link-icon instagram">
+                    <i class="fab fa-instagram"></i>
+                </div>
+                <div class="link-content">
+                    <div class="link-title">Instagram</div>
+                    <div class="link-description">Мой личный профиль</div>
+                </div>
+            </a>
+
+            <a href="https://www.chess.com/member/cm0ke777" class="link-button personal" target="_blank" rel="noopener">
+                <div class="link-icon chess">
+                    <i class="fas fa-chess"></i>
+                </div>
+                <div class="link-content">
+                    <div class="link-title">Chess.com</div>
+                    <div class="link-description">Сыграйте со мной партию</div>
+                </div>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
